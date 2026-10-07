@@ -51,6 +51,11 @@
       "ref_band": 0
     },
     "HYPE": {
+      "alert24": {
+        "change": -5.03,
+        "direction": "down",
+        "ts": 1791395859
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 91.98,
