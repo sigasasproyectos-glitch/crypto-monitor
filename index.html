@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mis criptos</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+:root{
+  --bg:#EEF1F4; --surface:#FFFFFF; --ink:#172433; --muted:#5E6C7B; --rule:#D6DCE3;
+  --up:#0B8A73; --down:#C8413A; --ref:#B7791F; --sel:#E4EAF0;
+  --font:"Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0F1923; --surface:#152230; --ink:#E5ECF3; --muted:#8D9BAB; --rule:#24364A;
+    --up:#2DB395; --down:#EE6B5F; --ref:#E2A63F; --sel:#1C2D3F;
+    color-scheme: dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-variant-numeric:tabular-nums;
+  font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.app{max-width:1440px;margin:0 auto;padding:20px 28px 48px}
+
+header.top{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+header.top h1{font-size:22px;font-weight:750;font-stretch:118%;margin:0;letter-spacing:-.01em}
+#updated{color:var(--muted);font-size:13px}
+.spacer{flex:1}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:transparent;padding:6px 12px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button+button{border-left:1px solid var(--rule)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.btn{border:1px solid var(--rule);background:var(--surface);border-radius:8px;padding:6px 14px;cursor:pointer;font-size:13px;font-weight:600}
+.btn.primary{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+#status{font-size:13px;margin:10px 0 0;min-height:1.2em;color:var(--muted)}
+#status.err{color:var(--down)}
+
+.main{display:grid;grid-template-columns:minmax(340px,390px) minmax(0,1fr);gap:32px;margin-top:14px}
+
+/* Lista de monedas */
+.list{background:var(--surface);border:1px solid var(--rule);border-radius:12px;overflow:hidden;align-self:start}
+.row{display:grid;grid-template-columns:28px minmax(0,1fr) 72px auto;align-items:center;gap:12px;width:100%;
+  padding:11px 16px;border:0;border-top:1px solid var(--rule);background:transparent;text-align:left;cursor:pointer;position:relative}
+.row:first-child{border-top:0}
+.row:hover,.row[aria-current="true"]{background:var(--sel)}
+.row[aria-current="true"]::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:0 3px 3px 0;background:var(--ink)}
+.row img{width:28px;height:28px;border-radius:50%}
+.tk{font-weight:700;font-size:15px}
+.nm{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.px{text-align:right;font-weight:600;font-size:14px}
+.chg{text-align:right;font-size:12px;white-space:nowrap}
+.up{color:var(--up)} .down{color:var(--down)}
+.refchip{color:var(--ref);margin-left:6px}
+.empty{padding:20px 16px;color:var(--muted);font-size:14px}
+
+/* Detalle */
+.detail{min-width:0}
+.coinhead{display:flex;align-items:center;gap:12px}
+.coinhead img{width:36px;height:36px;border-radius:50%}
+.coinhead .name{font-size:18px;font-weight:600}
+.coinhead .sym{color:var(--muted);font-size:14px;font-weight:600}
+.price{font-size:clamp(44px,6vw,84px);font-weight:760;font-stretch:125%;letter-spacing:-.035em;line-height:1;margin:14px 0 10px;overflow-wrap:anywhere}
+.periodline{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between}
+.pchg{font-size:16px;font-weight:650}
+.pchg .lbl{color:var(--muted);font-weight:500}
+.tools{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.toggle{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.toggle input{accent-color:var(--ref)}
+.chartwrap{position:relative;height:clamp(300px,46vh,500px);margin-top:14px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+#chart{position:absolute;inset:0}
+#chartmsg{position:absolute;inset:0;display:none;place-items:center;color:var(--muted);font-size:14px;text-align:center;padding:20px;
+  background:color-mix(in srgb,var(--bg) 75%,transparent)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:16px}
+.stat{padding:2px 18px;border-left:1px solid var(--rule)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat .k{font-size:12px;color:var(--muted)}
+.stat .v{font-size:17px;font-weight:650}
+.stat .s{font-size:12px;color:var(--muted)}
+.stat.refstat .v{color:var(--ref)}
+
+/* Comparación */
+.cmp{margin-top:40px}
+.cmphead{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.cmphead h2{margin:0;font-size:18px;font-weight:720;font-stretch:115%}
+.bars{display:grid;gap:4px;max-width:980px}
+.bar{display:grid;grid-template-columns:60px minmax(0,1fr) 80px;align-items:center;gap:12px;font-size:13px;
+  border:0;background:transparent;padding:4px 6px;border-radius:6px;cursor:pointer;text-align:left}
+.bar:hover{background:var(--sel)}
+.bar .t{font-weight:700}
+.track{position:relative;height:16px}
+.track::before{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:1px;background:var(--rule)}
+.fill{position:absolute;top:1px;bottom:1px;border-radius:3px}
+.bar .v{text-align:right;font-weight:650}
+
+/* Ajustes */
+dialog{border:1px solid var(--rule);border-radius:12px;background:var(--surface);color:var(--ink);padding:24px;max-width:470px;width:calc(100% - 32px)}
+dialog::backdrop{background:rgba(10,20,30,.45)}
+dialog h2{margin:0 0 4px;font-size:19px}
+dialog p{margin:0 0 8px;color:var(--muted);font-size:13px}
+label.f{display:block;font-size:13px;font-weight:600;margin:14px 0 4px}
+dialog input{width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.hint{font-size:12px;color:var(--muted);margin-top:4px}
+.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:22px}
+
+@media (max-width:920px){
+  .app{padding:16px}
+  .main{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:14px}
+  .stat:nth-child(3){border-left:0;padding-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <h1>Mis criptos</h1>
+    <span id="updated">Cargando precios…</span>
+    <span class="spacer"></span>
+    <div class="seg" id="vsSeg" role="group" aria-label="Moneda de los precios"></div>
+    <button class="btn" id="refreshBtn" type="button">Actualizar</button>
+    <button class="btn" id="openSettings" type="button">Ajustes</button>
+  </header>
+  <p id="status" role="status"></p>
+
+  <div class="main">
+    <nav class="list" id="list" aria-label="Monedas"><div class="empty">Cargando monedas…</div></nav>
+
+    <section class="detail" aria-label="Detalle de la moneda">
+      <div class="coinhead"><img id="dImg" alt="" hidden><span class="name" id="dName"></span><span class="sym" id="dSym"></span></div>
+      <div class="price" id="dPrice">—</div>
+      <div class="periodline">
+        <span class="pchg" id="dChg"></span>
+        <div class="tools">
+          <label class="toggle"><input type="checkbox" id="refToggle"> Mostrar referencia</label>
+          <div class="seg" id="rangeSeg" role="group" aria-label="Periodo del gráfico"></div>
+        </div>
+      </div>
+      <div class="chartwrap"><div id="chart"></div><div id="chartmsg"></div></div>
+      <div class="stats">
+        <div class="stat"><div class="k">Máximo del periodo</div><div class="v" id="sMax">—</div></div>
+        <div class="stat"><div class="k">Mínimo del periodo</div><div class="v" id="sMin">—</div></div>
+        <div class="stat refstat"><div class="k">Referencia</div><div class="v" id="sRef">—</div><div class="s" id="sRefD"></div></div>
+        <div class="stat"><div class="k">Distancia a la referencia</div><div class="v" id="sDist">—</div><div class="s" id="sDistD"></div></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="cmp" aria-label="Rendimiento comparado">
+    <div class="cmphead">
+      <h2>Rendimiento comparado</h2>
+      <div class="seg" id="cmpSeg" role="group" aria-label="Periodo de comparación"></div>
+    </div>
+    <div class="bars" id="bars"></div>
+  </section>
+</div>
+
+<dialog id="settings">
+  <form method="dialog">
+    <h2>Ajustes</h2>
+    <p>Se guardan solo en este navegador.</p>
+    <p id="usageLine"></p>
+    <label class="f" for="fRepo">Repositorio del monitor</label>
+    <input type="text" id="fRepo" placeholder="usuario/crypto-monitor" autocomplete="off" spellcheck="false">
+    <div class="hint">De aquí se leen tus monedas y precios de referencia. El repositorio debe ser público.</div>
+    <label class="f" for="fBranch">Rama</label>
+    <input type="text" id="fBranch" placeholder="main" autocomplete="off" spellcheck="false">
+    <label class="f" for="fKey">Clave Demo de CoinGecko (opcional)</label>
+    <input type="password" id="fKey" autocomplete="off" spellcheck="false">
+    <div class="hint">Evita que CoinGecko limite las consultas cuando cambias rápido entre monedas.</div>
+    <div class="actions">
+      <button class="btn" type="submit" value="cancel" formnovalidate>Cancelar</button>
+      <button class="btn primary" type="submit" value="save">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+"use strict";
+const LC = window.LightweightCharts;
+const DEFAULT_COINS = {
+  BTC: "bitcoin", ETH: "ethereum", POL: "polygon-ecosystem-token", SOL: "solana",
+  AVAX: "avalanche-2", EURC: "euro-coin", HYPE: "hyperliquid", SUI: "sui", PAXG: "pax-gold",
+  LINK: "chainlink", XRP: "ripple", ADA: "cardano"
+};
+const VS = [["usd", "USD"], ["cop", "COP"]];
+const RANGES = [["1", "24 h"], ["7", "7 d"], ["30", "30 d"], ["90", "90 d"], ["365", "1 año"]];
+const CMP = [["24h", "24 h"], ["7d", "7 d"], ["30d", "30 d"], ["1y", "1 año"]];
+const REFRESH_MIN = 5;      // precios: cada 5 min
+const CHART_TTL_MIN = 15;   // gráfico: se vuelve a pedir cada 15 min
+const REPO_MIN = 5;         // referencias (GitHub, no gasta cuota de CoinGecko)
+// Clave Demo: 10.000 consultas/mes. El monitor usa ~3.000 (cada 15 min);
+// el panel se reserva 6.500 y deja un margen de ~500.
+const PANEL_BUDGET = 6500;
+const MESES = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+const $ = id => document.getElementById(id);
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("cm." + k); return v === null ? d : v; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("cm." + k, v); } catch {} }
+};
+
+const S = {
+  coins: { ...DEFAULT_COINS }, markets: {}, refs: {}, refVs: "usd", refStep: 10, repoState: "none",
+  vs: store.get("vs", "usd"), sel: store.get("sel", "BTC"), range: store.get("range", "7"),
+  cmp: store.get("cmp", "7d"), showRef: store.get("showRef", "1") === "1",
+  cache: new Map(), chartReq: 0, updated: null
+};
+
+/* ---------- formato ---------- */
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+function decimals(v) {
+  if (S.vs === "cop") return v >= 100 ? 0 : 2;
+  return v >= 1 ? 2 : v >= 0.01 ? 4 : 6;
+}
+const num = v => v.toLocaleString("en-US", { minimumFractionDigits: decimals(v), maximumFractionDigits: decimals(v) });
+const money = v => v == null || !isFinite(v) ? "—" : (S.vs === "cop" ? "COP " : "$") + num(v);
+const pct = v => v == null || !isFinite(v) ? "—" : (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(2) + "%";
+const cls = v => v == null ? "" : v >= 0 ? "up" : "down";
+function fdate(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || "");
+  return m ? `${m[3]}-${MESES[+m[2] - 1]}-${m[1]}` : "?";
+}
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function rgba(hex, a) {
+  const h = hex.replace("#", "");
+  const n = parseInt(h.length === 3 ? h.split("").map(c => c + c).join("") : h, 16);
+  return `rgba(${n >> 16 & 255},${n >> 8 & 255},${n & 255},${a})`;
+}
+const rangeLabel = () => (RANGES.find(r => r[0] === S.range) || RANGES[1])[1];
+
+/* ---------- datos ---------- */
+function autoRepo() {
+  const h = location.hostname;
+  if (h.endsWith(".github.io")) {
+    const seg = location.pathname.split("/").filter(Boolean)[0];
+    if (seg && !seg.endsWith(".html")) return h.split(".")[0] + "/" + seg;
+  }
+  return "";
+}
+const repo = () => store.get("repo", "") || autoRepo();
+const branch = () => store.get("branch", "") || "main";
+const apiKey = () => store.get("key", "");
+
+function monthKey() { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0"); }
+function usage() {
+  let u; try { u = JSON.parse(store.get("usage", "{}")); } catch { u = {}; }
+  return u.month === monthKey() ? u : { month: monthKey(), n: 0 };
+}
+function countCall() { const u = usage(); u.n++; store.set("usage", JSON.stringify(u)); }
+// Sin clave no hay tope mensual. Con clave: si el panel va más rápido que su
+// cuota prorrateada, baja a 15 min; si la agota, deja de actualizar solo.
+function intervalMin() {
+  if (!apiKey()) return REFRESH_MIN;
+  const u = usage(), now = new Date();
+  const days = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  const frac = Math.max((now.getDate() - 1 + now.getHours() / 24) / days, 1 / days);
+  if (u.n >= PANEL_BUDGET) return Infinity;
+  if (u.n > PANEL_BUDGET * frac) return 15;
+  return REFRESH_MIN;
+}
+function cadenceText() {
+  const iv = intervalMin();
+  if (iv === Infinity) return "Cuota mensual del panel agotada: usa Actualizar.";
+  if (iv > REFRESH_MIN) return `Se actualiza cada ${iv} min para no agotar tu cuota mensual.`;
+  return `Se actualiza cada ${iv} min.`;
+}
+async function cg(path, params) {
+  countCall();
+  const u = new URL("https://api.coingecko.com/api/v3" + path);
+  for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
+  if (apiKey()) u.searchParams.set("x_cg_demo_api_key", apiKey());
+  let r;
+  try { r = await fetch(u); } catch { throw new Error("net"); }
+  if (r.status === 429) throw new Error("rate");
+  if (r.status === 401 || r.status === 403) throw new Error("key");
+  if (!r.ok) throw new Error("http");
+  return r.json();
+}
+function errMsg(e) {
+  switch (e && e.message) {
+    case "rate": return "CoinGecko limitó las consultas. Espera un minuto o agrega tu clave Demo en Ajustes.";
+    case "key": return "CoinGecko rechazó la clave. Revísala en Ajustes o déjala vacía.";
+    case "net": return "No se pudo conectar con CoinGecko. Revisa tu conexión a internet.";
+    default: return "CoinGecko respondió con un error. Se reintentará en un minuto.";
+  }
+}
+async function fetchJson(u) {
+  const r = await fetch(u + "?t=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error(r.status);
+  return r.json();
+}
+async function loadRepo() {
+  const r = repo();
+  if (!r) { S.repoState = "none"; S.refs = {}; return; }
+  const base = `https://raw.githubusercontent.com/${r}/${branch()}/`;
+  try {
+    const [cfg, st] = await Promise.all([fetchJson(base + "config.json"), fetchJson(base + "state.json")]);
+    if (cfg && cfg.coins) {
+      S.coins = Object.fromEntries(Object.entries(cfg.coins).map(([t, id]) => [t.toUpperCase(), id]));
+      S.refVs = String(cfg.vs_currency || "usd").toLowerCase();
+      S.refStep = Number(cfg.alert_reference && cfg.alert_reference.step_pct) || 10;
+    }
+    S.refs = {};
+    for (const [t, c] of Object.entries((st && st.coins) || {}))
+      if (c && c.ref) S.refs[t.toUpperCase()] = { ...c.ref, band: c.ref_band || 0 };
+    S.repoState = "ok";
+  } catch { S.repoState = "err"; }
+}
+async function loadMarkets() {
+  const data = await cg("/coins/markets", {
+    vs_currency: S.vs, ids: Object.values(S.coins).join(","), sparkline: "true",
+    price_change_percentage: "24h,7d,30d,1y", per_page: "100"
+  });
+  const byId = Object.fromEntries(data.map(m => [m.id, m]));
+  S.markets = {};
+  for (const [t, id] of Object.entries(S.coins)) if (byId[id]) S.markets[t] = byId[id];
+  S.updated = new Date();
+}
+function refFor(t) { return S.vs === S.refVs && S.repoState === "ok" ? S.refs[t] || null : null; }
+function refPct(t) {
+  const ref = refFor(t), m = S.markets[t];
+  return ref && m ? (m.current_price / ref.price - 1) * 100 : null;
+}
+
+/* ---------- interfaz ---------- */
+function seg(el, items, cur, onPick) {
+  el.innerHTML = "";
+  for (const [k, label] of items) {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = label;
+    b.setAttribute("aria-pressed", String(k === cur));
+    b.addEventListener("click", () => onPick(k));
+    el.append(b);
+  }
+}
+function spark(a) {
+  if (!a || a.length < 2) return "<span></span>";
+  const w = 72, h = 28, min = Math.min(...a), max = Math.max(...a), sx = w / (a.length - 1);
+  const pts = a.map((v, i) => `${(i * sx).toFixed(1)},${(2 + (max === min ? 0.5 : 1 - (v - min) / (max - min)) * (h - 4)).toFixed(1)}`).join(" ");
+  const c = a[a.length - 1] >= a[0] ? "var(--up)" : "var(--down)";
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+}
+function renderList() {
+  const el = $("list");
+  el.innerHTML = "";
+  for (const t of Object.keys(S.coins)) {
+    const m = S.markets[t];
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "row";
+    b.setAttribute("aria-current", String(t === S.sel));
+    b.addEventListener("click", () => select(t));
+    if (!m) {
+      b.innerHTML = `<span></span><span><div class="tk">${esc(t)}</div><div class="nm">Sin datos</div></span><span></span><span></span>`;
+    } else {
+      const ch = m.price_change_percentage_24h_in_currency, rp = refPct(t);
+      b.innerHTML =
+        `<img src="${esc(m.image)}" alt="" loading="lazy">` +
+        `<span style="min-width:0"><div class="tk">${esc(t)}</div><div class="nm">${esc(m.name)}</div></span>` +
+        spark(m.sparkline_in_7d && m.sparkline_in_7d.price) +
+        `<span><div class="px">${money(m.current_price)}</div><div class="chg"><span class="${cls(ch)}" title="Variación en 24 h">${pct(ch)}</span>` +
+        (rp == null ? "" : `<span class="refchip" title="Distancia a tu referencia">ref ${pct(rp)}</span>`) + `</div></span>`;
+    }
+    el.append(b);
+  }
+}
+function renderHead() {
+  const t = S.sel, m = S.markets[t];
+  $("dSym").textContent = t;
+  if (!m) { $("dName").textContent = t; $("dPrice").textContent = "—"; $("dImg").hidden = true; renderRefStats(); return; }
+  $("dImg").src = m.image; $("dImg").hidden = false;
+  $("dName").textContent = m.name;
+  $("dPrice").textContent = money(m.current_price);
+  document.title = `${t} ${money(m.current_price)} | Mis criptos`;
+  renderRefStats();
+}
+function renderRefStats() {
+  const t = S.sel, m = S.markets[t], ref = refFor(t);
+  const set = (id, v, c) => { $(id).innerHTML = v; if (c !== undefined) $(id).className = c; };
+  set("sDist", "—", "v"); set("sDistD", "");
+  if (!ref) {
+    set("sRef", "—");
+    let msg = "Aún sin referencia para esta moneda";
+    if (S.repoState === "none") msg = 'Conecta tu repositorio en <a href="#" data-open-settings>Ajustes</a>';
+    else if (S.repoState === "err") msg = 'No se pudo leer el repositorio. Revisa <a href="#" data-open-settings>Ajustes</a>';
+    else if (S.vs !== S.refVs) msg = `Tus referencias están en ${esc(S.refVs.toUpperCase())}`;
+    set("sRefD", msg);
+    return;
+  }
+  set("sRef", money(ref.price));
+  set("sRefD", `Fijada el ${fdate(ref.date)}`);
+  if (!m) return;
+  const d = (m.current_price / ref.price - 1) * 100, st = S.refStep / 100, b = ref.band || 0;
+  set("sDist", pct(d), "v " + cls(d));
+  const up = ref.price * (b >= 0 ? 1 + (b + 1) * st : 1 + st);
+  const dn = ref.price * Math.max(0.01, b <= 0 ? 1 - (Math.abs(b) + 1) * st : 1 - st);
+  set("sDistD", `Próximas alertas en ${money(up)} y ${money(dn)}`);
+}
+function renderBars() {
+  const f = `price_change_percentage_${S.cmp}_in_currency`;
+  const rows = Object.keys(S.coins).map(t => [t, S.markets[t] && S.markets[t][f]])
+    .filter(([, v]) => v != null && isFinite(v)).sort((a, b) => b[1] - a[1]);
+  const el = $("bars");
+  if (!rows.length) { el.innerHTML = `<div class="empty">Sin datos todavía.</div>`; return; }
+  const mx = Math.max(1, ...rows.map(([, v]) => Math.abs(v)));
+  el.innerHTML = rows.map(([t, v]) => {
+    const w = (Math.abs(v) / mx * 50).toFixed(2);
+    const pos = v >= 0 ? `left:50%;width:${w}%` : `right:50%;width:${w}%`;
+    return `<button type="button" class="bar" data-t="${esc(t)}" aria-label="${esc(t)} ${pct(v)}"><span class="t">${esc(t)}</span>` +
+      `<span class="track"><span class="fill" style="${pos};background:var(${v >= 0 ? "--up" : "--down"})"></span></span>` +
+      `<span class="v ${cls(v)}">${pct(v)}</span></button>`;
+  }).join("");
+}
+function setStatus(msg, err) { const s = $("status"); s.textContent = msg; s.className = err ? "err" : ""; }
+function chartMsg(msg) { const el = $("chartmsg"); el.textContent = msg; el.style.display = msg ? "grid" : "none"; }
+
+/* ---------- gráfico ---------- */
+let chart = null, series = null, refLines = [];
+function chartTheme() {
+  return {
+    layout: { background: { type: "solid", color: cssVar("--bg") }, textColor: cssVar("--muted"), fontFamily: "Archivo, system-ui, sans-serif", fontSize: 12 },
+    grid: { vertLines: { visible: false }, horzLines: { color: cssVar("--rule") } },
+    crosshair: { vertLine: { labelBackgroundColor: cssVar("--ink") }, horzLine: { labelBackgroundColor: cssVar("--ink") } }
+  };
+}
+function initChart() {
+  if (!LC) { chartMsg("No se pudo cargar el gráfico. Revisa tu conexión y recarga la página."); return; }
+  chart = LC.createChart($("chart"), {
+    autoSize: true, ...chartTheme(),
+    rightPriceScale: { borderVisible: false, scaleMargins: { top: 0.12, bottom: 0.08 } },
+    timeScale: { borderVisible: false, timeVisible: true, secondsVisible: false },
+    localization: { locale: "es-CO", priceFormatter: v => num(v) }
+  });
+  series = chart.addAreaSeries({
+    lineWidth: 2, priceLineVisible: false,
+    autoscaleInfoProvider: orig => {
+      const r = orig(), ref = S.showRef ? refFor(S.sel) : null;
+      if (r && ref) {
+        r.priceRange.minValue = Math.min(r.priceRange.minValue, ref.price);
+        r.priceRange.maxValue = Math.max(r.priceRange.maxValue, ref.price);
+      }
+      return r;
+    }
+  });
+}
+function drawRefLines() {
+  if (!series) return;
+  refLines.forEach(l => series.removePriceLine(l));
+  refLines = [];
+  const ref = S.showRef ? refFor(S.sel) : null;
+  if (!ref) return;
+  const c = cssVar("--ref"), st = S.refStep / 100;
+  refLines.push(series.createPriceLine({ price: ref.price, color: c, lineWidth: 1, lineStyle: LC.LineStyle.Dashed, axisLabelVisible: true, title: "Ref" }));
+  for (const k of [1, -1])
+    refLines.push(series.createPriceLine({ price: ref.price * (1 + k * st), color: c, lineWidth: 1, lineStyle: LC.LineStyle.Dotted, axisLabelVisible: false, title: (k > 0 ? "+" : "−") + S.refStep + "%" }));
+}
+function colorSeries(up) {
+  const c = cssVar(up ? "--up" : "--down");
+  series.applyOptions({ lineColor: c, topColor: rgba(c, 0.26), bottomColor: rgba(c, 0.02) });
+}
+async function loadChart(force) {
+  if (!chart) return;
+  const t = S.sel, id = S.coins[t], vs = S.vs, range = S.range, key = `${id}|${range}|${vs}`;
+  const req = ++S.chartReq;
+  let entry = S.cache.get(key);
+  if (!entry || force || Date.now() - entry.at > CHART_TTL_MIN * 60e3) {
+    if (!entry) chartMsg("Cargando gráfico…");
+    try {
+      const d = await cg(`/coins/${encodeURIComponent(id)}/market_chart`, { vs_currency: vs, days: range });
+      const off = new Date().getTimezoneOffset() * 60;   // el eje del gráfico usa hora local
+      const arr = [];
+      let last = -Infinity;
+      for (const [ms, p] of d.prices || []) {
+        const tt = Math.floor(ms / 1000) - off;
+        if (tt > last && p != null) { arr.push({ time: tt, value: p }); last = tt; }
+      }
+      entry = { at: Date.now(), arr };
+      S.cache.set(key, entry);
+    } catch (e) {
+      if (req === S.chartReq) chartMsg(errMsg(e));
+      return;
+    }
+  }
+  if (req !== S.chartReq) return;
+  const arr = entry.arr;
+  if (!arr.length) { chartMsg("Sin datos para este periodo."); return; }
+  chartMsg("");
+  const cur = S.markets[t] ? S.markets[t].current_price : arr[arr.length - 1].value;
+  const d = decimals(cur);
+  series.applyOptions({ priceFormat: { type: "price", precision: d, minMove: Math.pow(10, -d) } });
+  colorSeries(cur >= arr[0].value);
+  series.setData(arr);
+  drawRefLines();
+  chart.timeScale().fitContent();
+  let mx = -Infinity, mn = Infinity;
+  for (const p of arr) { if (p.value > mx) mx = p.value; if (p.value < mn) mn = p.value; }
+  $("sMax").textContent = money(mx);
+  $("sMin").textContent = money(mn);
+  const c = (cur / arr[0].value - 1) * 100;
+  $("dChg").innerHTML = `<span class="${cls(c)}">${pct(c)}</span> <span class="lbl">en ${esc(rangeLabel())}</span>`;
+}
+
+/* ---------- acciones ---------- */
+function select(t) {
+  if (!S.coins[t]) return;
+  S.sel = t; store.set("sel", t);
+  renderList(); renderHead();
+  $("dChg").textContent = ""; $("sMax").textContent = "—"; $("sMin").textContent = "—";
+  loadChart();
+}
+function renderControls() {
+  seg($("vsSeg"), VS, S.vs, async k => {
+    if (k === S.vs) return;
+    S.vs = k; store.set("vs", k); renderControls();
+    await refreshAll(false); loadChart();
+  });
+  seg($("rangeSeg"), RANGES, S.range, k => { S.range = k; store.set("range", k); renderControls(); loadChart(); });
+  seg($("cmpSeg"), CMP, S.cmp, k => { S.cmp = k; store.set("cmp", k); renderControls(); renderBars(); });
+  $("refToggle").checked = S.showRef;
+}
+async function refreshAll(withRepo) {
+  try {
+    if (withRepo) { await loadRepo(); S.lastRepo = Date.now(); }
+    if (!S.coins[S.sel]) S.sel = Object.keys(S.coins)[0];
+    S.lastMk = Date.now();
+    await loadMarkets();
+    setStatus("");
+    $("updated").textContent = "Actualizado a las " + S.updated.toLocaleTimeString("es-CO", { hour: "2-digit", minute: "2-digit", hour12: false }) + ". " + cadenceText();
+  } catch (e) {
+    setStatus(errMsg(e), true);
+  }
+  renderList(); renderHead(); renderBars();
+  drawRefLines();
+}
+function openSettings() {
+  $("fRepo").value = store.get("repo", "") || autoRepo();
+  $("fBranch").value = store.get("branch", "");
+  $("fKey").value = apiKey();
+  $("usageLine").textContent = `Consultas del panel este mes en este navegador: ${usage().n.toLocaleString("es-CO")} de ${PANEL_BUDGET.toLocaleString("es-CO")}.`;
+  $("settings").showModal();
+}
+
+async function boot() {
+  renderControls();
+  $("refToggle").addEventListener("change", e => {
+    S.showRef = e.target.checked; store.set("showRef", S.showRef ? "1" : "0");
+    drawRefLines(); if (chart) chart.priceScale("right").applyOptions({ autoScale: true });
+  });
+  $("openSettings").addEventListener("click", openSettings);
+  $("refreshBtn").addEventListener("click", async () => { await refreshAll(true); loadChart(true); });
+  document.addEventListener("click", e => {
+    const a = e.target.closest("[data-open-settings]");
+    if (a) { e.preventDefault(); openSettings(); }
+    const b = e.target.closest(".bar[data-t]");
+    if (b) select(b.dataset.t);
+  });
+  $("settings").addEventListener("close", async () => {
+    if ($("settings").returnValue !== "save") return;
+    const repoVal = $("fRepo").value.trim().replace(/^https?:\/\/github\.com\//, "").replace(/\.git$/, "").replace(/\/+$/, "");
+    store.set("repo", repoVal);
+    store.set("branch", $("fBranch").value.trim());
+    store.set("key", $("fKey").value.trim());
+    S.cache.clear();
+    await refreshAll(true); loadChart(true);
+  });
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (!chart) return;
+    chart.applyOptions(chartTheme()); loadChart(); drawRefLines();
+  });
+
+  initChart();
+  await refreshAll(true);
+  loadChart();
+
+  S.lastMk = S.lastMk || Date.now();
+  S.lastRepo = S.lastRepo || Date.now();
+  const tickFn = async () => {
+    if (document.hidden) return;
+    const iv = intervalMin();
+    if (iv === Infinity || Date.now() - S.lastMk < iv * 60e3) return;
+    await refreshAll(Date.now() - S.lastRepo >= REPO_MIN * 60e3);
+    loadChart();                           // usa caché si tiene menos de 15 min
+  };
+  setInterval(tickFn, 30e3);
+  document.addEventListener("visibilitychange", tickFn);
+}
+boot();
+</script>
+</body>
+</html>

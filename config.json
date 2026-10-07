@@ -1,0 +1,28 @@
+{
+  "coins": {
+    "BTC": "bitcoin",
+    "ETH": "ethereum",
+    "POL": "polygon-ecosystem-token",
+    "SOL": "solana",
+    "AVAX": "avalanche-2",
+    "EURC": "euro-coin",
+    "HYPE": "hyperliquid",
+    "SUI": "sui",
+    "PAXG": "pax-gold",
+    "LINK": "chainlink",
+    "XRP": "ripple",
+    "ADA": "cardano"
+  },
+  "vs_currency": "usd",
+  "alert_24h": {
+    "threshold_pct": 5,
+    "escalation_step_pct": 5,
+    "cooldown_hours": 12,
+    "reset_margin_pct": 1
+  },
+  "alert_reference": {
+    "step_pct": 10,
+    "reset_margin_pct": 1
+  },
+  "reference_prices": {}
+}
