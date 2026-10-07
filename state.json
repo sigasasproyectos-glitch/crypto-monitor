@@ -76,9 +76,9 @@
     },
     "POL": {
       "alert24": {
-        "change": -5.3,
+        "change": -5.76,
         "direction": "down",
-        "ts": 1791339118
+        "ts": 1791383533
       },
       "ref": {
         "date": "2026-10-06",
