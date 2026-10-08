@@ -1,12 +1,17 @@
 {
   "coins": {
     "ADA": {
+      "alert24": {
+        "change": -5.12,
+        "direction": "down",
+        "ts": 1791472883
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 0.26757,
         "source": "auto"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "AVAX": {
       "alert24": {
@@ -19,7 +24,7 @@
         "price": 11.64,
         "source": "auto"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "BTC": {
       "ref": {
@@ -54,6 +59,11 @@
       "ref_band": 0
     },
     "LINK": {
+      "alert24": {
+        "change": -5.03,
+        "direction": "down",
+        "ts": 1791472883
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 13.98,
@@ -86,12 +96,17 @@
       "ref_band": 0
     },
     "SUI": {
+      "alert24": {
+        "change": -5.16,
+        "direction": "down",
+        "ts": 1791472883
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 1.18,
         "source": "auto"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "XRP": {
       "ref": {
