@@ -45,7 +45,7 @@
         "price": 2698.36,
         "source": "auto"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "EURC": {
       "ref": {
@@ -56,11 +56,6 @@
       "ref_band": 0
     },
     "HYPE": {
-      "alert24": {
-        "change": -5.75,
-        "direction": "down",
-        "ts": 1791474397
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 91.98,
@@ -95,7 +90,7 @@
         "price": 0.107355,
         "source": "auto"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "SOL": {
       "alert24": {
@@ -124,11 +119,6 @@
       "ref_band": -1
     },
     "XRP": {
-      "alert24": {
-        "change": -5.61,
-        "direction": "down",
-        "ts": 1791474397
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 1.5,
