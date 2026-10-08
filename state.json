@@ -51,6 +51,11 @@
       "ref_band": 0
     },
     "HYPE": {
+      "alert24": {
+        "change": -5.75,
+        "direction": "down",
+        "ts": 1791474397
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 91.98,
@@ -69,7 +74,7 @@
         "price": 13.98,
         "source": "auto"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "PAXG": {
       "ref": {
@@ -80,6 +85,11 @@
       "ref_band": 0
     },
     "POL": {
+      "alert24": {
+        "change": -5.33,
+        "direction": "down",
+        "ts": 1791474397
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 0.107355,
@@ -88,6 +98,11 @@
       "ref_band": 0
     },
     "SOL": {
+      "alert24": {
+        "change": -6.62,
+        "direction": "down",
+        "ts": 1791474397
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 120.6,
@@ -109,6 +124,11 @@
       "ref_band": -1
     },
     "XRP": {
+      "alert24": {
+        "change": -5.61,
+        "direction": "down",
+        "ts": 1791474397
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 1.5,
