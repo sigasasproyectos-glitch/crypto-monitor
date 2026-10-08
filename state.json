@@ -69,7 +69,7 @@
         "price": 13.98,
         "source": "auto"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "PAXG": {
       "ref": {
