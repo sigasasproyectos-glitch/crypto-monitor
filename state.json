@@ -45,7 +45,7 @@
         "price": 2698.36,
         "source": "auto"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "EURC": {
       "ref": {
