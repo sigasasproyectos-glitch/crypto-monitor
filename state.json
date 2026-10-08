@@ -139,7 +139,7 @@
         "price": 1.5,
         "source": "auto"
       },
-      "ref_band": 0
+      "ref_band": -1
     }
   },
   "telegram_offset": 102990093
