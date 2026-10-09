@@ -15,9 +15,9 @@
     },
     "AVAX": {
       "alert24": {
-        "change": -11.13,
+        "change": -5.48,
         "direction": "down",
-        "ts": 1791476069
+        "ts": 1791520497
       },
       "ref": {
         "date": "2026-10-06",
