@@ -83,11 +83,6 @@
       "ref_band": 0
     },
     "SOL": {
-      "alert24": {
-        "change": -6.62,
-        "direction": "down",
-        "ts": 1791474397
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 120.6,
@@ -97,9 +92,9 @@
     },
     "SUI": {
       "alert24": {
-        "change": -10.73,
+        "change": -5.19,
         "direction": "down",
-        "ts": 1791482361
+        "ts": 1791525651
       },
       "ref": {
         "date": "2026-10-06",
