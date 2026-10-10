@@ -23,17 +23,17 @@
     },
     "BTC": {
       "ref": {
-        "date": "2026-10-06",
-        "price": 85575.0,
-        "source": "auto"
+        "date": "2026-10-10",
+        "price": 83650.0,
+        "source": "manual"
       },
       "ref_band": 0
     },
     "ETH": {
       "ref": {
-        "date": "2026-10-06",
-        "price": 2698.36,
-        "source": "auto"
+        "date": "2026-10-10",
+        "price": 2599.0,
+        "source": "manual"
       },
       "ref_band": 0
     },
@@ -71,17 +71,17 @@
     },
     "POL": {
       "ref": {
-        "date": "2026-10-06",
-        "price": 0.107355,
-        "source": "auto"
+        "date": "2026-10-10",
+        "price": 0.1044,
+        "source": "manual"
       },
       "ref_band": 0
     },
     "SOL": {
       "ref": {
-        "date": "2026-10-06",
-        "price": 120.6,
-        "source": "auto"
+        "date": "2026-10-10",
+        "price": 117.0,
+        "source": "manual"
       },
       "ref_band": 0
     },
@@ -100,12 +100,12 @@
     },
     "XRP": {
       "ref": {
-        "date": "2026-10-06",
-        "price": 1.5,
-        "source": "auto"
+        "date": "2026-10-10",
+        "price": 1.4378,
+        "source": "manual"
       },
       "ref_band": 0
     }
   },
-  "telegram_offset": 102990094
+  "telegram_offset": 102990100
 }
