@@ -1,6 +1,11 @@
 {
   "coins": {
     "ADA": {
+      "alert24": {
+        "change": 5.18,
+        "direction": "up",
+        "ts": 1791593591
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 0.26757,
@@ -86,7 +91,7 @@
         "price": 1.18,
         "source": "auto"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "XRP": {
       "ref": {
