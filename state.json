@@ -19,7 +19,7 @@
         "price": 11.64,
         "source": "auto"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "BTC": {
       "ref": {
