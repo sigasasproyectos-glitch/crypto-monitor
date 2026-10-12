@@ -56,7 +56,7 @@
         "price": 91.98,
         "source": "auto"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "LINK": {
       "ref": {
