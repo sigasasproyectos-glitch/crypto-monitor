@@ -10,11 +10,11 @@
     },
     "AVAX": {
       "ref": {
-        "date": "2026-10-06",
-        "price": 11.64,
-        "source": "auto"
+        "date": "2026-10-13",
+        "price": 10.38,
+        "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "BTC": {
       "ref": {
@@ -97,5 +97,5 @@
       "ref_band": 0
     }
   },
-  "telegram_offset": 102990101
+  "telegram_offset": 102990102
 }
