@@ -52,9 +52,9 @@
     },
     "HYPE": {
       "alert24": {
-        "change": -5.25,
+        "change": -5.36,
         "direction": "down",
-        "ts": 1791847034
+        "ts": 1791894486
       },
       "ref": {
         "date": "2026-10-06",
@@ -80,6 +80,11 @@
       "ref_band": 0
     },
     "POL": {
+      "alert24": {
+        "change": -6.03,
+        "direction": "down",
+        "ts": 1791894486
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 0.1044,
