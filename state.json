@@ -1,11 +1,6 @@
 {
   "coins": {
     "ADA": {
-      "alert24": {
-        "change": -6.85,
-        "direction": "down",
-        "ts": 1791885596
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 0.26757,
@@ -14,11 +9,6 @@
       "ref_band": -1
     },
     "AVAX": {
-      "alert24": {
-        "change": -5.13,
-        "direction": "down",
-        "ts": 1791879308
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 11.64,
@@ -91,11 +81,6 @@
       "ref_band": 0
     },
     "SUI": {
-      "alert24": {
-        "change": -6.24,
-        "direction": "down",
-        "ts": 1791885596
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 1.18,
