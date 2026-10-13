@@ -2,9 +2,9 @@
   "coins": {
     "ADA": {
       "alert24": {
-        "change": -5.11,
+        "change": -6.85,
         "direction": "down",
-        "ts": 1791842172
+        "ts": 1791885596
       },
       "ref": {
         "date": "2026-10-06",
@@ -97,9 +97,9 @@
     },
     "SUI": {
       "alert24": {
-        "change": -5.71,
+        "change": -6.24,
         "direction": "down",
-        "ts": 1791842172
+        "ts": 1791885596
       },
       "ref": {
         "date": "2026-10-06",
