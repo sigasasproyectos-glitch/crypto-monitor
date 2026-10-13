@@ -14,11 +14,6 @@
       "ref_band": -1
     },
     "AVAX": {
-      "alert24": {
-        "change": -5.09,
-        "direction": "down",
-        "ts": 1791844354
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 11.64,
@@ -88,11 +83,6 @@
       "ref_band": 0
     },
     "SOL": {
-      "alert24": {
-        "change": -5.12,
-        "direction": "down",
-        "ts": 1791848625
-      },
       "ref": {
         "date": "2026-10-10",
         "price": 117.0,
