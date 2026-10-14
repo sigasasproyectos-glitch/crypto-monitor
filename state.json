@@ -65,6 +65,11 @@
       "ref_band": 0
     },
     "POL": {
+      "alert24": {
+        "change": -5.07,
+        "direction": "down",
+        "ts": 1792006431
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 0.1044,
