@@ -119,11 +119,6 @@
       "ref_band": -1
     },
     "XRP": {
-      "alert24": {
-        "change": -5.22,
-        "direction": "down",
-        "ts": 1792044013
-      },
       "ref": {
         "date": "2026-10-10",
         "price": 1.4378,
