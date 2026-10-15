@@ -86,9 +86,9 @@
     },
     "POL": {
       "alert24": {
-        "change": -5.07,
+        "change": -6.5,
         "direction": "down",
-        "ts": 1792006431
+        "ts": 1792049701
       },
       "ref": {
         "date": "2026-10-10",
@@ -134,7 +134,7 @@
         "price": 1.4378,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     }
   },
   "telegram_offset": 102990102
