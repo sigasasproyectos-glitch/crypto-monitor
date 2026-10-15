@@ -65,11 +65,6 @@
       "ref_band": 0
     },
     "POL": {
-      "alert24": {
-        "change": -6.5,
-        "direction": "down",
-        "ts": 1792049701
-      },
       "ref": {
         "date": "2026-10-10",
         "price": 0.1044,
@@ -86,11 +81,6 @@
       "ref_band": -1
     },
     "SUI": {
-      "alert24": {
-        "change": -6.3,
-        "direction": "down",
-        "ts": 1792032195
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 1.18,
