@@ -70,7 +70,7 @@
         "price": 0.1044,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "SOL": {
       "ref": {
