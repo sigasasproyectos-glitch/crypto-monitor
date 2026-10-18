@@ -6,7 +6,7 @@
         "price": 0.26757,
         "source": "auto"
       },
-      "ref_band": -2
+      "ref_band": -1
     },
     "AVAX": {
       "ref": {
@@ -14,7 +14,7 @@
         "price": 10.38,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "BTC": {
       "ref": {
@@ -30,7 +30,7 @@
         "price": 2599.0,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "EURC": {
       "ref": {
@@ -86,7 +86,7 @@
         "price": 1.18,
         "source": "auto"
       },
-      "ref_band": -2
+      "ref_band": -1
     },
     "XRP": {
       "ref": {
