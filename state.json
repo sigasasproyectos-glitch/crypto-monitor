@@ -70,7 +70,7 @@
         "price": 0.1044,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "SOL": {
       "ref": {
@@ -78,14 +78,9 @@
         "price": 117.0,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "SUI": {
-      "alert24": {
-        "change": 5.11,
-        "direction": "up",
-        "ts": 1792507527
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 1.18,
