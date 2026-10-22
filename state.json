@@ -103,6 +103,11 @@
       "ref_band": -1
     },
     "SOL": {
+      "alert24": {
+        "change": -5.11,
+        "direction": "down",
+        "ts": 1792693726
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 117.0,
