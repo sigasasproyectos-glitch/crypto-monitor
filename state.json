@@ -35,11 +35,6 @@
       "ref_band": 0
     },
     "ETH": {
-      "alert24": {
-        "change": -5.15,
-        "direction": "down",
-        "ts": 1792687514
-      },
       "ref": {
         "date": "2026-10-10",
         "price": 2599.0,
