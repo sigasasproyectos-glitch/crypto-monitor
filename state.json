@@ -2,11 +2,11 @@
   "coins": {
     "ADA": {
       "ref": {
-        "date": "2026-10-06",
-        "price": 0.26757,
-        "source": "auto"
+        "date": "2026-10-24",
+        "price": 0.2133,
+        "source": "manual"
       },
-      "ref_band": -2
+      "ref_band": 0
     },
     "AVAX": {
       "ref": {
@@ -58,9 +58,9 @@
     },
     "PAXG": {
       "ref": {
-        "date": "2026-10-06",
-        "price": 4168.78,
-        "source": "auto"
+        "date": "2026-10-24",
+        "price": 4028.0,
+        "source": "manual"
       },
       "ref_band": 0
     },
@@ -82,11 +82,11 @@
     },
     "SUI": {
       "ref": {
-        "date": "2026-10-06",
-        "price": 1.18,
-        "source": "auto"
+        "date": "2026-10-24",
+        "price": 0.968221,
+        "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "XRP": {
       "ref": {
@@ -97,5 +97,5 @@
       "ref_band": -1
     }
   },
-  "telegram_offset": 102990102
+  "telegram_offset": 102990105
 }
