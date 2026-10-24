@@ -81,11 +81,6 @@
       "ref_band": -1
     },
     "SUI": {
-      "alert24": {
-        "change": -5.11,
-        "direction": "down",
-        "ts": 1792876681
-      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.968221,
