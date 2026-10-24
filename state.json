@@ -1,6 +1,11 @@
 {
   "coins": {
     "ADA": {
+      "alert24": {
+        "change": -5.53,
+        "direction": "down",
+        "ts": 1792853677
+      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.2133,
