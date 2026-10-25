@@ -94,7 +94,7 @@
         "price": 1.4378,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     }
   },
   "telegram_offset": 102990105
