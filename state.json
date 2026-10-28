@@ -30,7 +30,7 @@
         "price": 2599.0,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "EURC": {
       "ref": {
@@ -41,11 +41,6 @@
       "ref_band": 0
     },
     "HYPE": {
-      "alert24": {
-        "change": 5.85,
-        "direction": "up",
-        "ts": 1793180784
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 91.98,
