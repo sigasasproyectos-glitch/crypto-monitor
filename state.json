@@ -1,6 +1,11 @@
 {
   "coins": {
     "ADA": {
+      "alert24": {
+        "change": -6.85,
+        "direction": "down",
+        "ts": 1793307442
+      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.2133,
@@ -9,6 +14,11 @@
       "ref_band": 0
     },
     "AVAX": {
+      "alert24": {
+        "change": -6.67,
+        "direction": "down",
+        "ts": 1793307442
+      },
       "ref": {
         "date": "2026-10-13",
         "price": 10.38,
@@ -54,12 +64,17 @@
       "ref_band": 0
     },
     "LINK": {
+      "alert24": {
+        "change": -5.96,
+        "direction": "down",
+        "ts": 1793307442
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 13.98,
         "source": "auto"
       },
-      "ref_band": -1
+      "ref_band": -2
     },
     "PAXG": {
       "ref": {
@@ -78,6 +93,11 @@
       "ref_band": -1
     },
     "SOL": {
+      "alert24": {
+        "change": -5.43,
+        "direction": "down",
+        "ts": 1793307442
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 117.0,
@@ -86,6 +106,11 @@
       "ref_band": -1
     },
     "SUI": {
+      "alert24": {
+        "change": -6.65,
+        "direction": "down",
+        "ts": 1793307442
+      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.968221,
@@ -94,6 +119,11 @@
       "ref_band": 0
     },
     "XRP": {
+      "alert24": {
+        "change": -6.54,
+        "direction": "down",
+        "ts": 1793307442
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 1.4378,
