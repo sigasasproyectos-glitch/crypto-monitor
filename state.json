@@ -11,7 +11,7 @@
         "price": 0.2133,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "AVAX": {
       "alert24": {
