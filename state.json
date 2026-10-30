@@ -6,7 +6,7 @@
         "price": 0.2133,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "AVAX": {
       "alert24": {
@@ -46,11 +46,6 @@
       "ref_band": 0
     },
     "HYPE": {
-      "alert24": {
-        "change": 16.77,
-        "direction": "up",
-        "ts": 1793336167
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 91.98,
