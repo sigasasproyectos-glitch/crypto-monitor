@@ -1,11 +1,6 @@
 {
   "coins": {
     "ADA": {
-      "alert24": {
-        "change": -6.85,
-        "direction": "down",
-        "ts": 1793307442
-      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.2133,
@@ -14,11 +9,6 @@
       "ref_band": -1
     },
     "AVAX": {
-      "alert24": {
-        "change": -6.67,
-        "direction": "down",
-        "ts": 1793307442
-      },
       "ref": {
         "date": "2026-10-13",
         "price": 10.38,
