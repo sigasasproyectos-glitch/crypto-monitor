@@ -1,11 +1,6 @@
 {
   "coins": {
     "ADA": {
-      "alert24": {
-        "change": -7.01,
-        "direction": "down",
-        "ts": 1793371089
-      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.2133,
@@ -14,17 +9,12 @@
       "ref_band": -1
     },
     "AVAX": {
-      "alert24": {
-        "change": -6.4,
-        "direction": "down",
-        "ts": 1793363879
-      },
       "ref": {
         "date": "2026-10-13",
         "price": 10.38,
         "source": "manual"
       },
-      "ref_band": -2
+      "ref_band": -1
     },
     "BTC": {
       "alert24": {
@@ -40,11 +30,6 @@
       "ref_band": 0
     },
     "ETH": {
-      "alert24": {
-        "change": -5.56,
-        "direction": "down",
-        "ts": 1793371089
-      },
       "ref": {
         "date": "2026-10-10",
         "price": 2599.0,
@@ -69,11 +54,6 @@
       "ref_band": 0
     },
     "LINK": {
-      "alert24": {
-        "change": -7.25,
-        "direction": "down",
-        "ts": 1793371089
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 13.98,
@@ -111,11 +91,6 @@
       "ref_band": -1
     },
     "SUI": {
-      "alert24": {
-        "change": -7.02,
-        "direction": "down",
-        "ts": 1793371089
-      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.968221,
