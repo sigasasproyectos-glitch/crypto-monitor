@@ -6,7 +6,7 @@
         "price": 0.2133,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "AVAX": {
       "ref": {
@@ -49,12 +49,17 @@
       "ref_band": 0
     },
     "LINK": {
+      "alert24": {
+        "change": 6.66,
+        "direction": "up",
+        "ts": 1793401660
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 13.98,
         "source": "auto"
       },
-      "ref_band": -2
+      "ref_band": -1
     },
     "PAXG": {
       "ref": {
