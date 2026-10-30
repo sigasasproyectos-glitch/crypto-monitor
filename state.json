@@ -27,6 +27,11 @@
       "ref_band": -2
     },
     "BTC": {
+      "alert24": {
+        "change": -5.07,
+        "direction": "down",
+        "ts": 1793320599
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 83650.0,
@@ -35,6 +40,11 @@
       "ref_band": 0
     },
     "ETH": {
+      "alert24": {
+        "change": -6.36,
+        "direction": "down",
+        "ts": 1793320599
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 2599.0,
@@ -65,9 +75,9 @@
     },
     "LINK": {
       "alert24": {
-        "change": -5.96,
+        "change": -12.26,
         "direction": "down",
-        "ts": 1793307442
+        "ts": 1793320599
       },
       "ref": {
         "date": "2026-10-06",
@@ -85,6 +95,11 @@
       "ref_band": 0
     },
     "POL": {
+      "alert24": {
+        "change": -8.29,
+        "direction": "down",
+        "ts": 1793320599
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 0.1044,
@@ -103,7 +118,7 @@
         "price": 117.0,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": -2
     },
     "SUI": {
       "alert24": {
@@ -116,7 +131,7 @@
         "price": 0.968221,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "XRP": {
       "alert24": {
