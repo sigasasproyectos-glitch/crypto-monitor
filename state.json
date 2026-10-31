@@ -49,11 +49,6 @@
       "ref_band": 0
     },
     "LINK": {
-      "alert24": {
-        "change": 6.66,
-        "direction": "up",
-        "ts": 1793401660
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 13.98,
