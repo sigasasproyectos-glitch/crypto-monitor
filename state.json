@@ -42,9 +42,9 @@
     },
     "HYPE": {
       "ref": {
-        "date": "2026-10-06",
-        "price": 91.98,
-        "source": "auto"
+        "date": "2026-10-31",
+        "price": 89.01,
+        "source": "manual"
       },
       "ref_band": 0
     },
@@ -65,11 +65,6 @@
       "ref_band": 0
     },
     "POL": {
-      "alert24": {
-        "change": 6.08,
-        "direction": "up",
-        "ts": 1793396810
-      },
       "ref": {
         "date": "2026-10-10",
         "price": 0.1044,
@@ -102,5 +97,5 @@
       "ref_band": -1
     }
   },
-  "telegram_offset": 102990107
+  "telegram_offset": 102990108
 }
