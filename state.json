@@ -86,7 +86,7 @@
         "price": 0.968221,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "XRP": {
       "ref": {
