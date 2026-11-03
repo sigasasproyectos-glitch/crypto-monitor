@@ -14,7 +14,7 @@
         "price": 10.38,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": -2
     },
     "BTC": {
       "ref": {
@@ -41,6 +41,11 @@
       "ref_band": 0
     },
     "HYPE": {
+      "alert24": {
+        "change": -6.12,
+        "direction": "down",
+        "ts": 1793676721
+      },
       "ref": {
         "date": "2026-10-31",
         "price": 89.01,
