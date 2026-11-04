@@ -6,7 +6,7 @@
         "price": 0.2133,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "AVAX": {
       "ref": {
@@ -30,7 +30,7 @@
         "price": 2599.0,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "EURC": {
       "ref": {
@@ -54,7 +54,7 @@
         "price": 13.98,
         "source": "auto"
       },
-      "ref_band": -2
+      "ref_band": -1
     },
     "PAXG": {
       "ref": {
@@ -83,7 +83,7 @@
         "price": 117.0,
         "source": "manual"
       },
-      "ref_band": -2
+      "ref_band": -1
     },
     "SUI": {
       "ref": {
@@ -99,7 +99,7 @@
         "price": 1.4378,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     }
   },
   "telegram_offset": 102990108
