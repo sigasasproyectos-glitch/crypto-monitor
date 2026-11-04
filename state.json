@@ -65,6 +65,11 @@
       "ref_band": 0
     },
     "POL": {
+      "alert24": {
+        "change": 5.17,
+        "direction": "up",
+        "ts": 1793769988
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 0.1044,
@@ -86,7 +91,7 @@
         "price": 0.968221,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": 0
     },
     "XRP": {
       "ref": {
