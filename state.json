@@ -54,11 +54,6 @@
       "ref_band": 0
     },
     "LINK": {
-      "alert24": {
-        "change": 5.35,
-        "direction": "up",
-        "ts": 1793841408
-      },
       "ref": {
         "date": "2026-10-06",
         "price": 13.98,
@@ -75,11 +70,6 @@
       "ref_band": 0
     },
     "POL": {
-      "alert24": {
-        "change": 5.03,
-        "direction": "up",
-        "ts": 1793831312
-      },
       "ref": {
         "date": "2026-10-10",
         "price": 0.1044,
