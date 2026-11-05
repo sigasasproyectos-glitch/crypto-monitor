@@ -22,11 +22,6 @@
       "ref_band": -1
     },
     "BTC": {
-      "alert24": {
-        "change": 5.28,
-        "direction": "up",
-        "ts": 1793845645
-      },
       "ref": {
         "date": "2026-10-10",
         "price": 83650.0,
@@ -98,11 +93,6 @@
       "ref_band": 0
     },
     "SOL": {
-      "alert24": {
-        "change": 5.2,
-        "direction": "up",
-        "ts": 1793845645
-      },
       "ref": {
         "date": "2026-10-10",
         "price": 117.0,
