@@ -1,14 +1,24 @@
 {
   "coins": {
     "ADA": {
+      "alert24": {
+        "change": -5.53,
+        "direction": "down",
+        "ts": 1793891372
+      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.2133,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "AVAX": {
+      "alert24": {
+        "change": -6.35,
+        "direction": "down",
+        "ts": 1793891372
+      },
       "ref": {
         "date": "2026-10-13",
         "price": 10.38,
@@ -30,7 +40,7 @@
         "price": 2599.0,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "EURC": {
       "ref": {
@@ -41,20 +51,30 @@
       "ref_band": 0
     },
     "HYPE": {
+      "alert24": {
+        "change": -9.02,
+        "direction": "down",
+        "ts": 1793891372
+      },
       "ref": {
         "date": "2026-10-31",
         "price": 89.01,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "LINK": {
+      "alert24": {
+        "change": -5.56,
+        "direction": "down",
+        "ts": 1793891372
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 13.98,
         "source": "auto"
       },
-      "ref_band": -1
+      "ref_band": -2
     },
     "PAXG": {
       "ref": {
@@ -70,17 +90,27 @@
         "price": 0.1044,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "SOL": {
+      "alert24": {
+        "change": -5.37,
+        "direction": "down",
+        "ts": 1793891372
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 117.0,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": -2
     },
     "SUI": {
+      "alert24": {
+        "change": -7.33,
+        "direction": "down",
+        "ts": 1793891372
+      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.968221,
@@ -94,7 +124,7 @@
         "price": 1.4378,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     }
   },
   "telegram_offset": 102990108
