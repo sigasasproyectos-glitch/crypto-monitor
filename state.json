@@ -25,11 +25,6 @@
       "ref_band": 0
     },
     "ETH": {
-      "alert24": {
-        "change": 7.16,
-        "direction": "up",
-        "ts": 1793852699
-      },
       "ref": {
         "date": "2026-10-10",
         "price": 2599.0,
@@ -46,6 +41,11 @@
       "ref_band": 0
     },
     "HYPE": {
+      "alert24": {
+        "change": -5.03,
+        "direction": "down",
+        "ts": 1793876024
+      },
       "ref": {
         "date": "2026-10-31",
         "price": 89.01,
