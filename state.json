@@ -14,11 +14,6 @@
       "ref_band": -1
     },
     "AVAX": {
-      "alert24": {
-        "change": -6.35,
-        "direction": "down",
-        "ts": 1793891372
-      },
       "ref": {
         "date": "2026-10-13",
         "price": 10.38,
