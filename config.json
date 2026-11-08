@@ -17,12 +17,12 @@
   "alert_24h": {
     "threshold_pct": 5,
     "escalation_step_pct": 5,
-    "cooldown_hours": 12,
-    "reset_margin_pct": 1
+    "min_hours_between": 24,
+    "rearm_below_pct": 2.5
   },
   "alert_reference": {
     "step_pct": 10,
-    "reset_margin_pct": 1
+    "reset_margin_pct": 5
   },
   "reference_prices": {}
 }

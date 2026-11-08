@@ -77,10 +77,11 @@ sigue funcionando). El conteo es por navegador; en Ajustes ves cuántas llevas.
 | `coins` | Ticker → ID de CoinGecko. El ID aparece como "API ID" en la página de cada moneda. |
 | `vs_currency` | `usd`, `cop`, `eur`… (las referencias se expresan en esta moneda) |
 | `alert_24h.threshold_pct` | Umbral 24 h (5 = ±5%). |
-| `alert_24h.escalation_step_pct` | Vuelve a avisar si el movimiento se amplía estos puntos. |
-| `alert_24h.cooldown_hours` | Si sigue fuera del umbral, recordatorio cada N horas. |
+| `alert_24h.escalation_step_pct` | Vuelve a avisar enseguida si el movimiento se amplía estos puntos (ej. de −5% a −10%). |
+| `alert_24h.min_hours_between` | Horas mínimas entre dos avisos de la misma moneda en la misma dirección, salvo que el movimiento se amplíe. |
+| `alert_24h.rearm_below_pct` | Para volver a avisar, la variación 24 h debe calmarse antes por debajo de este valor. |
 | `alert_reference.step_pct` | Saltos de alerta vs. referencia (10 = avisa en ±10%, ±20%…). |
-| `reset_margin_pct` | Margen para "rearmar" una alerta y evitar spam si el precio oscila justo en el umbral. |
+| `alert_reference.reset_margin_pct` | Cuánto debe devolverse el precio para que se pueda volver a avisar el mismo nivel (5 = medio escalón). |
 | `reference_prices` | Opcional: fija referencias desde aquí, ej. `{"BTC": 60000}`. Tienen prioridad sobre `/ref`; bórralas para volver a manejarlas por Telegram. |
 
 ## Notas

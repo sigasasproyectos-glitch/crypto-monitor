@@ -4,10 +4,14 @@ Monitor de criptomonedas con alertas por Telegram.
 
 Dos tipos de alerta:
 1) Variación 24 h: avisa cuando una moneda sube o cae más de ±5% en 24 h.
-   No repite salvo que el movimiento se amplíe otros 5 puntos, cambie de
-   dirección o pasen 12 h.
+   Para no repetir: una vez avisada, la misma moneda en la misma dirección
+   solo vuelve a avisar si el movimiento se amplía otros 5 puntos (ej. de -5%
+   a -10%), o si antes se calmó (variación por debajo de 2,5%) y ya pasaron
+   24 h desde el último aviso. Un movimiento en la dirección contraria sí
+   avisa de inmediato.
 2) Precio de referencia: avisa cada vez que el precio se aleja ±10%, ±20%,
-   ±30%... de su referencia. La referencia es, por defecto, el precio del día
+   ±30%... de su referencia. Para volver a avisar el mismo nivel, el precio
+   debe haberse devuelto antes medio escalón (5 puntos). La referencia es, por defecto, el precio del día
    en que el monitor la registra; se puede cambiar por Telegram (/ref) o
    fijar en config.json.
 
@@ -163,11 +167,11 @@ class Monitor:
         a24 = cfg.get("alert_24h", {})
         self.th24 = float(a24.get("threshold_pct", 5))
         self.step24 = float(a24.get("escalation_step_pct", 5))
-        self.cool24 = float(a24.get("cooldown_hours", 12))
-        self.margin24 = float(a24.get("reset_margin_pct", 1))
+        self.gap24 = float(a24.get("min_hours_between", 24))
+        self.rearm24 = float(a24.get("rearm_below_pct", 2.5))
         ar = cfg.get("alert_reference", {})
         self.step_ref = float(ar.get("step_pct", 10))
-        self.margin_ref = float(ar.get("reset_margin_pct", 1))
+        self.margin_ref = float(ar.get("reset_margin_pct", 5))
         self.cfg_refs = {k.upper(): v for k, v in cfg.get("reference_prices", {}).items()
                          if not k.startswith("_") and v not in (None, "")}
         self.state = state
@@ -265,19 +269,25 @@ class Monitor:
         price, ch = self.prices[t]
         cs = self.cs(t)
         prev = cs.get("alert24")
-        if abs(ch) >= self.th24:
-            d = "up" if ch > 0 else "down"
-            fire = (not prev or prev["direction"] != d
-                    or abs(ch) >= abs(prev["change"]) + self.step24
-                    or (now - prev["ts"]) / 3600 >= self.cool24)
-            if fire:
-                cs["alert24"] = {"direction": d, "change": round(ch, 2), "ts": now}
-                icon, verb = ("🚀", "sube") if d == "up" else ("🔻", "cae")
-                return (f"{icon} <b>{t}</b> {verb} <b>{ch:+.2f}%</b> en 24 h\n"
-                        f"Precio: {fmt_price(price)} {self.unit}")
-        elif abs(ch) < self.th24 - self.margin24:
-            cs.pop("alert24", None)
-        return None
+        # se "rearma" cuando la variación se calma por debajo del umbral de rearme
+        if prev is not None and abs(ch) < self.rearm24:
+            prev["armed"] = True
+        if abs(ch) < self.th24:
+            return None
+        d = "up" if ch > 0 else "down"
+        if prev is None or prev["direction"] != d:
+            fire, tag = True, ""
+        elif abs(ch) >= abs(prev["change"]) + self.step24:
+            fire, tag = True, f" (antes {prev['change']:+.2f}%)"
+        else:
+            fire = prev.get("armed", False) and (now - prev["ts"]) / 3600 >= self.gap24
+            tag = ""
+        if not fire:
+            return None
+        cs["alert24"] = {"direction": d, "change": round(ch, 2), "ts": now, "armed": False}
+        icon, verb = ("🚀", "sube") if d == "up" else ("🔻", "cae")
+        return (f"{icon} <b>{t}</b> {verb} <b>{ch:+.2f}%</b> en 24 h{tag}\n"
+                f"Precio: {fmt_price(price)} {self.unit}")
 
     def check_ref(self, t):
         cs = self.cs(t)
