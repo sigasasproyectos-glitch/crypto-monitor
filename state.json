@@ -22,7 +22,7 @@
         "price": 83650.0,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "ETH": {
       "ref": {
@@ -94,7 +94,7 @@
         "price": 1.4378,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": -2
     }
   },
   "telegram_offset": 102990108
