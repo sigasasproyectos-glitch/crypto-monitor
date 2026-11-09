@@ -25,6 +25,12 @@
       "ref_band": -1
     },
     "ETH": {
+      "alert24": {
+        "armed": false,
+        "change": -5.83,
+        "direction": "down",
+        "ts": 1794217654
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 2599.0,
@@ -89,6 +95,12 @@
       "ref_band": -1
     },
     "XRP": {
+      "alert24": {
+        "armed": false,
+        "change": -6.28,
+        "direction": "down",
+        "ts": 1794217654
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 1.4378,
