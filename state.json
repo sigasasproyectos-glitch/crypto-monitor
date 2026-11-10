@@ -32,7 +32,7 @@
     },
     "ETH": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -5.83,
         "direction": "down",
         "ts": 1794217654
@@ -102,7 +102,7 @@
     },
     "XRP": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -6.28,
         "direction": "down",
         "ts": 1794217654
