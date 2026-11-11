@@ -10,7 +10,7 @@
     },
     "AVAX": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": 6.54,
         "direction": "up",
         "ts": 1794255994
