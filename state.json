@@ -6,7 +6,7 @@
         "price": 0.2133,
         "source": "manual"
       },
-      "ref_band": -1
+      "ref_band": -2
     },
     "AVAX": {
       "alert24": {
@@ -90,9 +90,15 @@
         "price": 117.0,
         "source": "manual"
       },
-      "ref_band": -2
+      "ref_band": -3
     },
     "SUI": {
+      "alert24": {
+        "armed": false,
+        "change": -5.55,
+        "direction": "down",
+        "ts": 1794502095
+      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.968221,
