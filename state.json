@@ -100,7 +100,7 @@
     },
     "SUI": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -5.55,
         "direction": "down",
         "ts": 1794502095
