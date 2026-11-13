@@ -23,6 +23,12 @@
       "ref_band": -2
     },
     "BTC": {
+      "alert24": {
+        "armed": false,
+        "change": -5.07,
+        "direction": "down",
+        "ts": 1794538513
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 83650.0,
