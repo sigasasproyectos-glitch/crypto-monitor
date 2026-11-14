@@ -1,6 +1,12 @@
 {
   "coins": {
     "ADA": {
+      "alert24": {
+        "armed": false,
+        "change": -9.06,
+        "direction": "down",
+        "ts": 1794675274
+      },
       "ref": {
         "date": "2026-10-24",
         "price": 0.2133,
@@ -38,10 +44,10 @@
     },
     "ETH": {
       "alert24": {
-        "armed": true,
-        "change": -5.83,
+        "armed": false,
+        "change": -5.24,
         "direction": "down",
-        "ts": 1794217654
+        "ts": 1794675274
       },
       "ref": {
         "date": "2026-10-10",
@@ -73,6 +79,12 @@
       "ref_band": -2
     },
     "LINK": {
+      "alert24": {
+        "armed": false,
+        "change": -7.8,
+        "direction": "down",
+        "ts": 1794675274
+      },
       "ref": {
         "date": "2026-10-06",
         "price": 13.98,
@@ -89,6 +101,12 @@
       "ref_band": 0
     },
     "POL": {
+      "alert24": {
+        "armed": false,
+        "change": -7.35,
+        "direction": "down",
+        "ts": 1794675274
+      },
       "ref": {
         "date": "2026-10-10",
         "price": 0.1044,
@@ -112,10 +130,10 @@
     },
     "SUI": {
       "alert24": {
-        "armed": true,
-        "change": -5.55,
+        "armed": false,
+        "change": -9.21,
         "direction": "down",
-        "ts": 1794502095
+        "ts": 1794675274
       },
       "ref": {
         "date": "2026-10-24",
@@ -126,10 +144,10 @@
     },
     "XRP": {
       "alert24": {
-        "armed": true,
-        "change": -6.28,
+        "armed": false,
+        "change": -5.77,
         "direction": "down",
-        "ts": 1794217654
+        "ts": 1794675274
       },
       "ref": {
         "date": "2026-10-10",
