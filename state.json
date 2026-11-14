@@ -12,21 +12,21 @@
         "price": 0.2133,
         "source": "manual"
       },
-      "ref_band": -2
+      "ref_band": -3
     },
     "AVAX": {
       "alert24": {
         "armed": false,
-        "change": -5.33,
+        "change": -13.86,
         "direction": "down",
-        "ts": 1794653845
+        "ts": 1794690447
       },
       "ref": {
         "date": "2026-10-13",
         "price": 10.38,
         "source": "manual"
       },
-      "ref_band": -2
+      "ref_band": -3
     },
     "BTC": {
       "alert24": {
@@ -54,7 +54,7 @@
         "price": 2599.0,
         "source": "manual"
       },
-      "ref_band": -2
+      "ref_band": -3
     },
     "EURC": {
       "ref": {
@@ -67,9 +67,9 @@
     "HYPE": {
       "alert24": {
         "armed": false,
-        "change": -5.22,
+        "change": -13.38,
         "direction": "down",
-        "ts": 1794653845
+        "ts": 1794690447
       },
       "ref": {
         "date": "2026-10-31",
@@ -117,9 +117,9 @@
     "SOL": {
       "alert24": {
         "armed": false,
-        "change": -5.86,
+        "change": -11.17,
         "direction": "down",
-        "ts": 1794653845
+        "ts": 1794690447
       },
       "ref": {
         "date": "2026-10-10",
