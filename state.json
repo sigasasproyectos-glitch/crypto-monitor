@@ -2,7 +2,7 @@
   "coins": {
     "ADA": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -9.06,
         "direction": "down",
         "ts": 1794675274
@@ -30,7 +30,7 @@
     },
     "BTC": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -5.07,
         "direction": "down",
         "ts": 1794538513
@@ -44,7 +44,7 @@
     },
     "ETH": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -5.24,
         "direction": "down",
         "ts": 1794675274
@@ -66,7 +66,7 @@
     },
     "HYPE": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -13.38,
         "direction": "down",
         "ts": 1794690447
@@ -80,7 +80,7 @@
     },
     "LINK": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -7.8,
         "direction": "down",
         "ts": 1794675274
@@ -102,7 +102,7 @@
     },
     "POL": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -7.35,
         "direction": "down",
         "ts": 1794675274
@@ -144,7 +144,7 @@
     },
     "XRP": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -5.77,
         "direction": "down",
         "ts": 1794675274
