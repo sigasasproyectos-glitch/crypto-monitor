@@ -16,7 +16,7 @@
     },
     "AVAX": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -13.86,
         "direction": "down",
         "ts": 1794690447
@@ -116,7 +116,7 @@
     },
     "SOL": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -11.17,
         "direction": "down",
         "ts": 1794690447
@@ -130,7 +130,7 @@
     },
     "SUI": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -9.21,
         "direction": "down",
         "ts": 1794675274
