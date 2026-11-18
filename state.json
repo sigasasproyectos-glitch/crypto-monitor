@@ -116,10 +116,10 @@
     },
     "SOL": {
       "alert24": {
-        "armed": true,
-        "change": -11.17,
-        "direction": "down",
-        "ts": 1794690447
+        "armed": false,
+        "change": 5.11,
+        "direction": "up",
+        "ts": 1794963466
       },
       "ref": {
         "date": "2026-10-10",
