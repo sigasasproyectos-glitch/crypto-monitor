@@ -116,7 +116,7 @@
     },
     "SOL": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": 5.11,
         "direction": "up",
         "ts": 1794963466
