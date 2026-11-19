@@ -98,7 +98,7 @@
         "price": 4028.0,
         "source": "manual"
       },
-      "ref_band": 0
+      "ref_band": -1
     },
     "POL": {
       "alert24": {
