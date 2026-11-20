@@ -66,10 +66,10 @@
     },
     "HYPE": {
       "alert24": {
-        "armed": true,
-        "change": -13.38,
+        "armed": false,
+        "change": -5.17,
         "direction": "down",
-        "ts": 1794690447
+        "ts": 1795172214
       },
       "ref": {
         "date": "2026-10-31",
@@ -130,10 +130,10 @@
     },
     "SUI": {
       "alert24": {
-        "armed": true,
-        "change": -9.21,
+        "armed": false,
+        "change": -5.25,
         "direction": "down",
-        "ts": 1794675274
+        "ts": 1795172214
       },
       "ref": {
         "date": "2026-10-24",
