@@ -2,10 +2,10 @@
   "coins": {
     "ADA": {
       "alert24": {
-        "armed": true,
-        "change": -9.06,
+        "armed": false,
+        "change": -8.03,
         "direction": "down",
-        "ts": 1794675274
+        "ts": 1795201199
       },
       "ref": {
         "date": "2026-10-24",
@@ -16,10 +16,10 @@
     },
     "AVAX": {
       "alert24": {
-        "armed": true,
-        "change": -13.86,
+        "armed": false,
+        "change": -6.9,
         "direction": "down",
-        "ts": 1794690447
+        "ts": 1795201199
       },
       "ref": {
         "date": "2026-10-13",
@@ -30,24 +30,24 @@
     },
     "BTC": {
       "alert24": {
-        "armed": true,
-        "change": -5.07,
+        "armed": false,
+        "change": -6.84,
         "direction": "down",
-        "ts": 1794538513
+        "ts": 1795201199
       },
       "ref": {
         "date": "2026-10-10",
         "price": 83650.0,
         "source": "manual"
       },
-      "ref_band": -2
+      "ref_band": -3
     },
     "ETH": {
       "alert24": {
-        "armed": true,
-        "change": -5.24,
+        "armed": false,
+        "change": -8.61,
         "direction": "down",
-        "ts": 1794675274
+        "ts": 1795201199
       },
       "ref": {
         "date": "2026-10-10",
@@ -67,23 +67,23 @@
     "HYPE": {
       "alert24": {
         "armed": false,
-        "change": -5.17,
+        "change": -10.63,
         "direction": "down",
-        "ts": 1795172214
+        "ts": 1795201199
       },
       "ref": {
         "date": "2026-10-31",
         "price": 89.01,
         "source": "manual"
       },
-      "ref_band": -2
+      "ref_band": -3
     },
     "LINK": {
       "alert24": {
-        "armed": true,
-        "change": -7.8,
+        "armed": false,
+        "change": -6.96,
         "direction": "down",
-        "ts": 1794675274
+        "ts": 1795201199
       },
       "ref": {
         "date": "2026-10-06",
@@ -102,10 +102,10 @@
     },
     "POL": {
       "alert24": {
-        "armed": true,
-        "change": -7.35,
+        "armed": false,
+        "change": -7.38,
         "direction": "down",
-        "ts": 1794675274
+        "ts": 1795201199
       },
       "ref": {
         "date": "2026-10-10",
@@ -116,10 +116,10 @@
     },
     "SOL": {
       "alert24": {
-        "armed": true,
-        "change": 5.11,
-        "direction": "up",
-        "ts": 1794963466
+        "armed": false,
+        "change": -6.77,
+        "direction": "down",
+        "ts": 1795201199
       },
       "ref": {
         "date": "2026-10-10",
@@ -140,14 +140,14 @@
         "price": 0.968221,
         "source": "manual"
       },
-      "ref_band": -2
+      "ref_band": -3
     },
     "XRP": {
       "alert24": {
-        "armed": true,
-        "change": -5.77,
+        "armed": false,
+        "change": -6.72,
         "direction": "down",
-        "ts": 1794675274
+        "ts": 1795201199
       },
       "ref": {
         "date": "2026-10-10",
