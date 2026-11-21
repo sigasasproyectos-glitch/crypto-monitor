@@ -2,7 +2,7 @@
   "coins": {
     "ADA": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -8.03,
         "direction": "down",
         "ts": 1795201199
@@ -16,7 +16,7 @@
     },
     "AVAX": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -6.9,
         "direction": "down",
         "ts": 1795201199
@@ -30,7 +30,7 @@
     },
     "BTC": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -6.84,
         "direction": "down",
         "ts": 1795201199
@@ -44,7 +44,7 @@
     },
     "ETH": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -8.61,
         "direction": "down",
         "ts": 1795201199
@@ -80,7 +80,7 @@
     },
     "LINK": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -6.96,
         "direction": "down",
         "ts": 1795201199
@@ -102,7 +102,7 @@
     },
     "POL": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -7.38,
         "direction": "down",
         "ts": 1795201199
@@ -116,7 +116,7 @@
     },
     "SOL": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -6.77,
         "direction": "down",
         "ts": 1795201199
@@ -130,7 +130,7 @@
     },
     "SUI": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -11.7,
         "direction": "down",
         "ts": 1795248024
@@ -144,7 +144,7 @@
     },
     "XRP": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": -6.72,
         "direction": "down",
         "ts": 1795201199
