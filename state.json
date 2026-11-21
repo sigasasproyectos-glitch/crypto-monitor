@@ -90,7 +90,7 @@
         "price": 13.98,
         "source": "auto"
       },
-      "ref_band": -3
+      "ref_band": -4
     },
     "PAXG": {
       "ref": {
@@ -131,9 +131,9 @@
     "SUI": {
       "alert24": {
         "armed": false,
-        "change": -5.25,
+        "change": -11.7,
         "direction": "down",
-        "ts": 1795172214
+        "ts": 1795248024
       },
       "ref": {
         "date": "2026-10-24",
