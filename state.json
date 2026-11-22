@@ -130,10 +130,10 @@
     },
     "SUI": {
       "alert24": {
-        "armed": true,
-        "change": -11.7,
-        "direction": "down",
-        "ts": 1795248024
+        "armed": false,
+        "change": 5.23,
+        "direction": "up",
+        "ts": 1795337482
       },
       "ref": {
         "date": "2026-10-24",
