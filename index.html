@@ -76,6 +76,7 @@ header.top h1{font-size:22px;font-weight:750;font-stretch:118%;margin:0;letter-s
 .tools{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .toggle{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
 .toggle input{accent-color:var(--ref)}
+.chartnote{margin:8px 0 0;font-size:12.5px;color:var(--muted)}
 .chartwrap{position:relative;height:clamp(300px,46vh,500px);margin-top:14px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 #chart{position:absolute;inset:0}
 #chartmsg{position:absolute;inset:0;display:none;place-items:center;color:var(--muted);font-size:14px;text-align:center;padding:20px;
@@ -147,6 +148,7 @@ dialog input{width:100%;padding:8px 10px;border:1px solid var(--rule);border-rad
         </div>
       </div>
       <div class="chartwrap"><div id="chart"></div><div id="chartmsg"></div></div>
+      <p class="chartnote" id="chartNote" hidden></p>
       <div class="stats">
         <div class="stat"><div class="k">Máximo del periodo</div><div class="v" id="sMax">—</div></div>
         <div class="stat"><div class="k">Mínimo del periodo</div><div class="v" id="sMin">—</div></div>
@@ -194,7 +196,12 @@ const DEFAULT_COINS = {
   LINK: "chainlink", XRP: "ripple", ADA: "cardano"
 };
 const VS = [["usd", "USD"], ["cop", "COP"]];
-const RANGES = [["1", "24 h"], ["7", "7 d"], ["30", "30 d"], ["90", "90 d"], ["365", "1 año"]];
+const RANGES = [["1", "24 h"], ["7", "7 d"], ["30", "30 d"], ["90", "90 d"], ["365", "1 año"], ["730", "2 años"], ["1825", "5 años"]];
+// Más de 1 año: CoinGecko gratis solo da 365 días, así que el historial largo sale de Binance (precio en USDT ≈ USD).
+const BINANCE = { BTC: "BTCUSDT", ETH: "ETHUSDT", POL: "POLUSDT", SOL: "SOLUSDT", AVAX: "AVAXUSDT", EURC: "EURCUSDT",
+  HYPE: "HYPEUSDT", SUI: "SUIUSDT", PAXG: "PAXGUSDT", LINK: "LINKUSDT", XRP: "XRPUSDT", ADA: "ADAUSDT" };
+const LEGACY = { POL: "MATICUSDT" };   // POL reemplazó a MATIC 1:1 en sep. 2024
+const BINANCE_HOSTS = ["https://data-api.binance.vision", "https://api.binance.com"];
 const CMP = [["24h", "24 h"], ["7d", "7 d"], ["30d", "30 d"], ["1y", "1 año"]];
 const REFRESH_MIN = 5;      // precios: cada 5 min
 const CHART_TTL_MIN = 15;   // gráfico: se vuelve a pedir cada 15 min
@@ -219,12 +226,13 @@ const S = {
 
 /* ---------- formato ---------- */
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-function decimals(v) {
-  if (S.vs === "cop") return v >= 100 ? 0 : 2;
+function decimals(v, vs = S.vs) {
+  if (vs === "cop") return v >= 100 ? 0 : 2;
   return v >= 1 ? 2 : v >= 0.01 ? 4 : 6;
 }
-const num = v => v.toLocaleString("en-US", { minimumFractionDigits: decimals(v), maximumFractionDigits: decimals(v) });
-const money = v => v == null || !isFinite(v) ? "—" : (S.vs === "cop" ? "COP " : "$") + num(v);
+const num = (v, vs = S.vs) => v.toLocaleString("en-US", { minimumFractionDigits: decimals(v, vs), maximumFractionDigits: decimals(v, vs) });
+const money = (v, vs = S.vs) => v == null || !isFinite(v) ? "—" : (vs === "cop" ? "COP " : "$") + num(v, vs);
+const chartVs = () => Number(S.range) > 365 ? "usd" : S.vs;
 const pct = v => v == null || !isFinite(v) ? "—" : (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(2) + "%";
 const cls = v => v == null ? "" : v >= 0 ? "up" : "down";
 function fdate(iso) {
@@ -327,7 +335,7 @@ async function loadMarkets() {
   for (const [t, id] of Object.entries(S.coins)) if (byId[id]) S.markets[t] = byId[id];
   S.updated = new Date();
 }
-function refFor(t) { return S.vs === S.refVs && S.repoState === "ok" ? S.refs[t] || null : null; }
+function refFor(t, vs = S.vs) { return vs === S.refVs && S.repoState === "ok" ? S.refs[t] || null : null; }
 function refPct(t) {
   const ref = refFor(t), m = S.markets[t];
   return ref && m ? (m.current_price / ref.price - 1) * 100 : null;
@@ -439,12 +447,12 @@ function initChart() {
     autoSize: true, ...chartTheme(),
     rightPriceScale: { borderVisible: false, scaleMargins: { top: 0.12, bottom: 0.08 } },
     timeScale: { borderVisible: false, timeVisible: true, secondsVisible: false },
-    localization: { locale: "es-CO", priceFormatter: v => num(v) }
+    localization: { locale: "es-CO", priceFormatter: v => num(v, chartVs()) }
   });
   series = chart.addAreaSeries({
     lineWidth: 2, priceLineVisible: false,
     autoscaleInfoProvider: orig => {
-      const r = orig(), ref = S.showRef ? refFor(S.sel) : null;
+      const r = orig(), ref = S.showRef ? refFor(S.sel, chartVs()) : null;
       if (r && ref) {
         r.priceRange.minValue = Math.min(r.priceRange.minValue, ref.price);
         r.priceRange.maxValue = Math.max(r.priceRange.maxValue, ref.price);
@@ -457,7 +465,7 @@ function drawRefLines() {
   if (!series) return;
   refLines.forEach(l => series.removePriceLine(l));
   refLines = [];
-  const ref = S.showRef ? refFor(S.sel) : null;
+  const ref = S.showRef ? refFor(S.sel, chartVs()) : null;
   if (!ref) return;
   const c = cssVar("--ref"), st = S.refStep / 100;
   refLines.push(series.createPriceLine({ price: ref.price, color: c, lineWidth: 1, lineStyle: LC.LineStyle.Dashed, axisLabelVisible: true, title: "Ref" }));
@@ -468,35 +476,92 @@ function colorSeries(up) {
   const c = cssVar(up ? "--up" : "--down");
   series.applyOptions({ lineColor: c, topColor: rgba(c, 0.26), bottomColor: rgba(c, 0.02) });
 }
+async function binanceDaily(sym, startMs) {
+  const out = [];
+  let start = startMs;
+  for (let page = 0; page < 4; page++) {
+    let rows = null, invalid = false;
+    for (const host of BINANCE_HOSTS) {
+      try {
+        const r = await fetch(`${host}/api/v3/klines?symbol=${sym}&interval=1d&startTime=${start}&limit=1000`);
+        if (r.status === 400) { invalid = true; break; }   // no se negocia en Binance
+        if (!r.ok) continue;
+        rows = await r.json(); break;
+      } catch {}
+    }
+    if (invalid) return out;
+    if (!rows) { if (!out.length) throw new Error("bnet"); break; }
+    for (const k of rows) out.push([k[0], Number(k[4])]);
+    if (rows.length < 1000) break;
+    start = rows[rows.length - 1][0] + 864e5;
+  }
+  return out;
+}
+// Historial largo en USD: Binance; si no hay, el último año de CoinGecko
+async function longHistory(t, days) {
+  const startMs = Date.now() - days * 864e5;
+  let pts = [], src = "binance";
+  try { pts = await binanceDaily(BINANCE[t] || t + "USDT", startMs); } catch { pts = []; }
+  if (pts.length && LEGACY[t] && pts[0][0] > startMs + 10 * 864e5) {
+    try {
+      const old = (await binanceDaily(LEGACY[t], startMs)).filter(p => p[0] < pts[0][0]);
+      if (old.length) { pts = old.concat(pts); src = "legacy"; }
+    } catch {}
+  }
+  if (pts.length < 30) {
+    const d = await cg(`/coins/${encodeURIComponent(S.coins[t])}/market_chart`, { vs_currency: "usd", days: "365", interval: "daily" });
+    pts = (d.prices || []).filter(p => p[1] != null); src = "cg";
+  }
+  return { pts, src, startMs };
+}
 async function loadChart(force) {
   if (!chart) return;
-  const t = S.sel, id = S.coins[t], vs = S.vs, range = S.range, key = `${id}|${range}|${vs}`;
+  const t = S.sel, id = S.coins[t], range = S.range, long = Number(range) > 365, vs = chartVs(), key = `${id}|${range}|${vs}`;
   const req = ++S.chartReq;
   let entry = S.cache.get(key);
-  if (!entry || force || Date.now() - entry.at > CHART_TTL_MIN * 60e3) {
-    if (!entry) chartMsg("Cargando gráfico…");
+  // el historial largo cambia poco: se vuelve a pedir cada 6 h
+  const ttl = (long ? 360 : CHART_TTL_MIN) * 60e3;
+  if (!entry || force || Date.now() - entry.at > ttl) {
+    if (!entry) chartMsg(long ? "Cargando historial…" : "Cargando gráfico…");
     try {
-      const d = await cg(`/coins/${encodeURIComponent(id)}/market_chart`, { vs_currency: vs, days: range });
+      let raw, note = "", partial = false;
+      if (long) {
+        const h = await longHistory(t, Number(range));
+        raw = h.pts;
+        if (h.src === "cg") note = `Para ${t} solo hay datos del último año.`;
+        else if (raw.length && raw[0][0] > h.startMs + 10 * 864e5) {
+          const iso = new Date(raw[0][0]).toISOString().slice(0, 10);
+          note = LEGACY[t] ? `Hay datos de ${t} desde el ${fdate(iso)}; el historial anterior, cuando se llamaba MATIC, no está disponible.`
+            : `Hay datos de ${t} desde el ${fdate(iso)}, cuando empezó a negociarse.`;
+        }
+        if (h.src === "legacy") note = `Antes de septiembre de 2024 se grafica MATIC, que POL reemplazó 1 a 1.`;
+        partial = h.src === "cg" || (raw.length && raw[0][0] > h.startMs + 10 * 864e5 && h.src !== "legacy");
+      } else {
+        raw = (await cg(`/coins/${encodeURIComponent(id)}/market_chart`, { vs_currency: vs, days: range })).prices || [];
+      }
       const off = new Date().getTimezoneOffset() * 60;   // el eje del gráfico usa hora local
       const arr = [];
       let last = -Infinity;
-      for (const [ms, p] of d.prices || []) {
+      for (const [ms, p] of raw) {
         const tt = Math.floor(ms / 1000) - off;
-        if (tt > last && p != null) { arr.push({ time: tt, value: p }); last = tt; }
+        if (tt > last && p != null && isFinite(p)) { arr.push({ time: tt, value: p }); last = tt; }
       }
-      entry = { at: Date.now(), arr };
+      entry = { at: Date.now(), arr, note, partial };
       S.cache.set(key, entry);
     } catch (e) {
-      if (req === S.chartReq) chartMsg(errMsg(e));
+      if (req === S.chartReq) chartMsg(e && e.message === "bnet" ? "No se pudo descargar el historial. Revisa tu conexión e intenta de nuevo." : errMsg(e));
       return;
     }
   }
   if (req !== S.chartReq) return;
   const arr = entry.arr;
+  const note = [entry.note, long && S.vs !== "usd" ? "Los periodos de más de 1 año se muestran en USD." : ""].filter(Boolean).join(" ");
+  $("chartNote").textContent = note;
+  $("chartNote").hidden = !note;
   if (!arr.length) { chartMsg("Sin datos para este periodo."); return; }
   chartMsg("");
-  const cur = S.markets[t] ? S.markets[t].current_price : arr[arr.length - 1].value;
-  const d = decimals(cur);
+  const cur = !long && S.markets[t] ? S.markets[t].current_price : arr[arr.length - 1].value;
+  const d = decimals(cur, vs);
   series.applyOptions({ priceFormat: { type: "price", precision: d, minMove: Math.pow(10, -d) } });
   colorSeries(cur >= arr[0].value);
   series.setData(arr);
@@ -504,10 +569,10 @@ async function loadChart(force) {
   chart.timeScale().fitContent();
   let mx = -Infinity, mn = Infinity;
   for (const p of arr) { if (p.value > mx) mx = p.value; if (p.value < mn) mn = p.value; }
-  $("sMax").textContent = money(mx);
-  $("sMin").textContent = money(mn);
+  $("sMax").textContent = money(mx, vs);
+  $("sMin").textContent = money(mn, vs);
   const c = (cur / arr[0].value - 1) * 100;
-  $("dChg").innerHTML = `<span class="${cls(c)}">${pct(c)}</span> <span class="lbl">en ${esc(rangeLabel())}</span>`;
+  $("dChg").innerHTML = `<span class="${cls(c)}">${pct(c)}</span> <span class="lbl">${entry.partial ? "desde el " + fdate(new Date((arr[0].time + new Date().getTimezoneOffset() * 60) * 1000).toISOString().slice(0, 10)) : "en " + esc(rangeLabel())}${long && S.vs !== "usd" ? " (USD)" : ""}</span>`;
 }
 
 /* ---------- acciones ---------- */
