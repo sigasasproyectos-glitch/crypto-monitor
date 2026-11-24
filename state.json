@@ -66,10 +66,10 @@
     },
     "HYPE": {
       "alert24": {
-        "armed": true,
-        "change": -10.63,
+        "armed": false,
+        "change": -6.44,
         "direction": "down",
-        "ts": 1795201199
+        "ts": 1795549395
       },
       "ref": {
         "date": "2026-10-31",
