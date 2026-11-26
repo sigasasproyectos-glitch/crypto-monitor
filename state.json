@@ -2,7 +2,7 @@
   "coins": {
     "ADA": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": 8.56,
         "direction": "up",
         "ts": 1795702342
@@ -66,7 +66,7 @@
     },
     "HYPE": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": 8.3,
         "direction": "up",
         "ts": 1795702342
@@ -116,7 +116,7 @@
     },
     "SOL": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": 6.32,
         "direction": "up",
         "ts": 1795702342
@@ -130,7 +130,7 @@
     },
     "SUI": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": 7.33,
         "direction": "up",
         "ts": 1795702342
@@ -144,7 +144,7 @@
     },
     "XRP": {
       "alert24": {
-        "armed": false,
+        "armed": true,
         "change": 5.9,
         "direction": "up",
         "ts": 1795702342
