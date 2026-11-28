@@ -2,10 +2,10 @@
   "coins": {
     "ADA": {
       "alert24": {
-        "armed": true,
-        "change": 8.56,
-        "direction": "up",
-        "ts": 1795702342
+        "armed": false,
+        "change": -5.12,
+        "direction": "down",
+        "ts": 1795874092
       },
       "ref": {
         "date": "2026-10-24",
@@ -16,10 +16,10 @@
     },
     "AVAX": {
       "alert24": {
-        "armed": true,
-        "change": -6.9,
+        "armed": false,
+        "change": -5.12,
         "direction": "down",
-        "ts": 1795201199
+        "ts": 1795874092
       },
       "ref": {
         "date": "2026-10-13",
@@ -44,10 +44,10 @@
     },
     "ETH": {
       "alert24": {
-        "armed": true,
-        "change": -8.61,
+        "armed": false,
+        "change": -5.15,
         "direction": "down",
-        "ts": 1795201199
+        "ts": 1795874092
       },
       "ref": {
         "date": "2026-10-10",
@@ -66,10 +66,10 @@
     },
     "HYPE": {
       "alert24": {
-        "armed": true,
-        "change": 5.81,
-        "direction": "up",
-        "ts": 1795791891
+        "armed": false,
+        "change": -5.84,
+        "direction": "down",
+        "ts": 1795874092
       },
       "ref": {
         "date": "2026-10-31",
